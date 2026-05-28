@@ -239,7 +239,7 @@ html,body{background:var(--cream);color:var(--dark);font-family:'Source Sans 3',
 const CEO_SLOTS=3;
 
 const MILESTONES=[
-  {id:'ms_mkt1',   name:'First Marketeer Used',       cls:'ms-blu',effect:''},
+  {id:'ms_mkt1',   name:'First Marketeer Used',       cls:'ms-blu',effect:'★ รับ Kitchen Trainee + Errand Boy'},
   {id:'ms_mkt2',   name:'First Mkt Trainee Used',     cls:'ms-blu',effect:''},
   {id:'ms_mkt3',   name:'First Campaign Mgr Used',    cls:'ms-blu',effect:''},
   {id:'ms_mkt4',   name:'First Brand Mgr Used',       cls:'ms-blu',effect:''},
@@ -254,8 +254,8 @@ const MILESTONES=[
   {id:'ms_ops7',   name:'First Coffee Sold',          cls:'ms-grn',effect:''},
   {id:'ms_hr1',    name:'First Discount Mgr Used',    cls:'ms-red',effect:''},
   {id:'ms_hr2',    name:'First New Restaurant',       cls:'ms-red',effect:''},
-  {id:'ms_hr3',    name:'First Recruiting Girl Used', cls:'ms-gry',effect:''},
-  {id:'ms_hr4',    name:'First Trainer Used',         cls:'ms-gry',effect:''},
+  {id:'ms_hr3',    name:'First Recruiting Girl Used', cls:'ms-gry',effect:'★ รับ Exec VP 1 ใบ'},
+  {id:'ms_hr4',    name:'First Trainer Used',         cls:'ms-gry',effect:'★ รับ Trainer 1 ใบ'},
   {id:'ms_pur1',   name:'First Waitress Used',        cls:'ms-pur',effect:''},
   {id:'ms_house',  name:'First House Built',          cls:'ms-pur',effect:'★ Train ซ้ำคนเดิมได้',special:'house'},
   {id:'ms_lob',    name:'First Lobbyist Used',        cls:'ms-pur',effect:''},
@@ -340,10 +340,37 @@ function calcTrain(s){const aw=awList(s);const ns=aw.includes('night_shift');let
 function calcRecruit(s){let n=1,e=0;awList(s).forEach(id=>{if(id==='recruiting_girl')e+=1;if(id==='recruiting_mgr')e+=2;});return{n,e,t:n+e};}
 function addLog(t){curLogs.unshift(t);}
 
+const MS_REWARDS={
+  'ms_mkt1': ['kitchen_trainee','errand_boy'],
+  'ms_hr4':  ['trainer'],
+  'ms_hr3':  ['evp'],
+};
+
 function toggleMs(id){
-  msChecked[id]=!msChecked[id];
-  if(id==='ms_house')addLog(msChecked[id]?'★ MILESTONE ✓ First House Built':'★ MILESTONE ✗ First House Built');
-  renderMs();updateChips(G);
+  const wasChecked=!!msChecked[id];
+  msChecked[id]=!wasChecked;
+  const nowChecked=msChecked[id];
+  const ms=MILESTONES.find(m=>m.id===id);
+  const label=ms?ms.name:id;
+
+  if(MS_REWARDS[id]){
+    saveU();
+    if(nowChecked){
+      MS_REWARDS[id].forEach(cid=>{
+        G.beach.push(cid);
+        addLog('★ MS ✓ '+label+' → '+AC[cid].n+' เข้า Beach');
+      });
+    } else {
+      MS_REWARDS[id].forEach(cid=>{
+        const idx=G.beach.lastIndexOf(cid);
+        if(idx!==-1){G.beach.splice(idx,1);addLog('★ MS ✗ '+label+' → '+AC[cid].n+' ออก Beach');}
+      });
+    }
+    snap();
+  } else {
+    if(id==='ms_house')addLog(nowChecked?'★ MILESTONE ✓ First House Built':'★ MILESTONE ✗ First House Built');
+  }
+  renderMs();ra();
 }
 function doHire(id){saveU();G.beach.push(id);addLog('HIRE '+AC[id].n);snap();ra();}
 function toggleHire(){hireOpen=!hireOpen;trainTarget=null;ra();}
