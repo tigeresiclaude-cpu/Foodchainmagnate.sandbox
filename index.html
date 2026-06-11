@@ -129,18 +129,36 @@ html,body{background:#f5f0e8;color:var(--navy);font-family:'Source Sans 3',sans-
 /* ── HIRE BUTTON ── */
 .hire-open-btn{width:100%;padding:13px;border:2px solid var(--teal);border-radius:7px;font-size:12px;font-family:'Oswald',sans-serif;letter-spacing:.08em;cursor:pointer;background:var(--teal4);color:var(--teal2);display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;font-weight:700;text-transform:uppercase;transition:all .15s}
 .hire-open-btn .dot{width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0}
-.hire-open-btn.open{background:var(--navy);color:#fff;border-color:var(--teal)}
-.hire-open-btn.open .dot{background:var(--teal)}
-.hire-panel{background:var(--cream2);border:1.5px solid var(--cream3);border-radius:8px;padding:10px;margin-top:8px}
-.hire-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:7px}
-.hcard{border-radius:8px;padding:10px 9px;border:1.5px solid transparent;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.hcard:active{filter:brightness(1.06)}
-.hc-tag{display:inline-block;font-size:8px;padding:2px 6px;border-radius:2px;margin-bottom:4px;font-family:'Oswald',sans-serif;text-transform:uppercase;background:rgba(0,0,0,.14);color:inherit;opacity:.8;font-weight:600}
-.hc-name{font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;line-height:1.25;margin-bottom:3px}
-.hc-desc{font-size:11px;line-height:1.4;opacity:.85}
-.hc-train{font-size:10px;opacity:.6;margin-top:3px;font-style:italic}
-.hc-btn{margin-top:8px;width:100%;padding:8px;border:1.5px solid rgba(0,0,0,.2);border-radius:4px;font-size:10px;font-family:'Oswald',sans-serif;cursor:pointer;background:rgba(0,0,0,.15);color:inherit;min-height:40px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-.hc-btn:active{background:rgba(0,0,0,.28)}
+
+/* ── HIRE POPUP — centered modal ── */
+.hire-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;background:rgba(28,45,74,.6);backdrop-filter:blur(4px);padding:16px}
+.hire-overlay-box{background:#fff;border-radius:14px;width:100%;max-width:560px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 12px 48px rgba(0,0,0,.35);overflow:hidden}
+.hire-overlay-header{padding:12px 16px 10px;border-bottom:3px solid var(--teal);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;background:var(--navy)}
+.hire-overlay-title{font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;color:#fff;letter-spacing:.08em;text-transform:uppercase}
+.hire-overlay-close{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.hire-overlay-close:active{background:rgba(255,255,255,.3)}
+.hire-overlay-scroll{overflow-y:auto;padding:12px 12px 16px;flex:1;-webkit-overflow-scrolling:touch}
+.hire-remaining{font-family:'Oswald',sans-serif;font-size:11px;color:var(--teal2);margin-bottom:12px;padding:6px 10px;background:var(--teal4);border-radius:6px;border:1px solid var(--teal3)}
+
+/* ── CHAIN GRID layout ── */
+.chain-grid-wrap{position:relative;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chain-grid-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:nowrap}
+.chain-grid-row:last-of-type{margin-bottom:0}
+.chain-cell{flex-shrink:0;width:112px}
+.chain-svg{position:absolute;top:0;left:0;pointer-events:none;overflow:visible}
+.chain-card{border-radius:8px;padding:8px 9px;border:1.5px solid transparent;width:112px;box-shadow:0 1px 5px rgba(0,0,0,.1);position:relative;z-index:1}
+.chain-card.entry{border-left:4px solid var(--teal) !important;box-shadow:0 2px 10px rgba(74,157,168,.25)}
+.chain-card .cc-icon{font-size:20px;display:block;text-align:center;margin-bottom:3px;line-height:1}
+.chain-card .cc-icon svg{width:24px;height:24px;display:block;margin:0 auto}
+.chain-card .cc-name{font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:1.25;margin-bottom:2px}
+.chain-card .cc-desc{font-size:8.5px;line-height:1.35;opacity:.85}
+.chain-card .cc-hire-btn{margin-top:6px;width:100%;padding:6px;border:1.5px solid rgba(0,0,0,.2);border-radius:4px;font-size:10px;font-family:'Oswald',sans-serif;cursor:pointer;background:rgba(0,0,0,.15);color:inherit;font-weight:700;letter-spacing:.04em;text-transform:uppercase;min-height:36px}
+.chain-card .cc-hire-btn:active{background:rgba(0,0,0,.28)}
+.chain-card .cc-hire-btn:disabled{opacity:.4;cursor:not-allowed}
+.chain-ghost{width:112px;flex-shrink:0;visibility:hidden;pointer-events:none}
+.chain-ghost-card{opacity:.25;pointer-events:none;box-shadow:none}
+.chain-section-label{font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal2);margin-bottom:8px;padding-bottom:3px;border-bottom:1px solid var(--cream3)}
+.chain-group{background:var(--cream2);border:1px solid var(--cream3);border-radius:9px;padding:10px;margin-bottom:9px}
 
 /* ── MILESTONES ── */
 .ms-grid{display:flex;gap:6px;flex-wrap:wrap}
@@ -271,7 +289,6 @@ html,body{background:#f5f0e8;color:var(--navy);font-family:'Source Sans 3',sans-
     <button class="hire-open-btn" id="hire-open-btn" onclick="toggleHire()">
       <span class="dot"></span><span id="hire-btn-lbl">เลือกการ์ดที่ต้องการ Hire ▾</span>
     </button>
-    <div id="hire-panel-area"></div>
   </div>
 
   <div class="log-wrap">
@@ -286,6 +303,17 @@ html,body{background:#f5f0e8;color:var(--navy);font-family:'Source Sans 3',sans-
   <div class="ptitle"><span class="pbar" style="background:var(--amber2)"></span>MILESTONES — แตะเพื่อติ๊ก ✓ / ✗</div>
   <div style="font-size:9px;color:var(--teal2);margin-bottom:10px;font-family:'Source Sans 3',sans-serif;font-weight:600">★ First House Built ✓ = ปลดล็อก Train ซ้ำคนเดิมได้ในรอบเดียว</div>
   <div id="ms-render"></div>
+</div>
+
+<!-- HIRE OVERLAY POPUP -->
+<div id="hire-overlay" style="display:none" class="hire-overlay" onclick="closeHireOnBg(event)">
+  <div class="hire-overlay-box">
+    <div class="hire-overlay-header">
+      <div class="hire-overlay-title">⚡ HIRE — เลือกการ์ด</div>
+      <button class="hire-overlay-close" onclick="toggleHire()">✕</button>
+    </div>
+    <div class="hire-overlay-scroll" id="hire-overlay-scroll"></div>
+  </div>
 </div>
 
 <!-- MODAL -->
@@ -336,7 +364,7 @@ const AC={
   svp:            {n:'Senior VP',       c:'c-blk',isM:true, s:5, d:'Manager — slot +5',           t:['cfo','evp','hr_dir']},
   evp:            {n:'Exec VP',         c:'c-blk',isM:true, s:10,d:'Manager — slot +10',          t:[]},
   cfo:            {n:'CFO',             c:'c-pur', isM:false,s:0, d:'+50% cash this round',       t:[]},
-  hr_dir:         {n:'HR Director',     c:'c-blk',isM:false,s:0, d:'4× hire or −$5',             t:[]},
+  hr_dir:         {n:'HR Director',     c:'c-gry',isM:false,s:0, d:'+4 recruit หรือ −$5/salary',   t:[]},
   local_mgr:      {n:'Local Manager',   c:'c-red', isM:false,s:0, d:'New restaurant (soon)',      t:[]},
   regional_mgr:   {n:'Regional Mgr',    c:'c-red', isM:false,s:0, d:'Open/move restaurant',      t:[]},
   pricing_mgr:    {n:'Pricing Manager', c:'c-sal', isM:false,s:0, d:'Price −$1 (mandatory)',      t:[]},
@@ -375,8 +403,8 @@ const AC={
   barista_trainee:{n:'Barista Trainee', c:'c-lblu',isM:false,s:0, d:'1 coffee',                 t:['barista']},
   barista:        {n:'Barista',         c:'c-lblu',isM:false,s:0, d:'2 coffee',                 t:['lead_barista']},
   lead_barista:   {n:'Lead Barista',    c:'c-lblu',isM:false,s:0, d:'5 coffee',                 t:[]},
-  lobbyist:       {n:'Lobbyist',        c:'c-gry', isM:false,s:0, d:'Road or park',             t:[]},
-  new_biz_dev:    {n:'New Biz Dev',     c:'c-gry', isM:false,s:0, d:'House or garden',          t:[]},
+  lobbyist:       {n:'Lobbyist',        c:'c-pur', isM:false,s:0, d:'Road or park',             t:[]},
+  new_biz_dev:    {n:'New Biz Dev',     c:'c-pur', isM:false,s:0, d:'House or garden',          t:[]},
 };
 
 const HIRE_LIST=['mgmt_trainee','pricing_mgr','recruiting_girl','trainer','mkt_trainee','night_shift','errand_boy','kitchen_trainee','kimchi_master','waitress','barista_trainee','lobbyist'];
@@ -440,7 +468,7 @@ function icon(id){
 
 function cl(g){return JSON.parse(JSON.stringify(g));}
 let msChecked={};
-let G={turn:1,ceoSlots:[],managers:[],beach:[],trainedThis:{},hiredCount:0,usedTrainSlots:0};
+let G={turn:1,ceoSlots:[],managers:[],beach:[],trainedThis:{},hiredCount:0,usedTrainSlots:0,trainLog:{}};
 let undoStack=[],turnSnaps=[{turn:1,state:cl(G),logs:[]}],curLogs=[],viewTurnNum=null;
 let hireOpen=false,trainTarget=null,turnStartState=cl(G);
 
@@ -468,10 +496,12 @@ function calcRecruit(s){
   const ns=aw.includes('night_shift');
   const girlCount=aw.filter(id=>id==='recruiting_girl').length;
   const mgrCount=aw.filter(id=>id==='recruiting_mgr').length;
-  const ceo=1; /* CEO base — Night Shift ไม่ +1 ให้ CEO */
+  const hrDirCount=aw.filter(id=>id==='hr_dir').length;
+  const ceo=1;
   let extra=0;
-  extra+=girlCount * (ns ? 2 : 1);   /* Recruiting Girl: ปกติ+1, ถ้ามี Night Shift +2 ต่อคน */
-  extra+=mgrCount * 2;                 /* Recruiting Mgr: +2 ต่อคน */
+  extra+=girlCount * (ns ? 2 : 1);   /* Recruiting Girl: ปกติ+1, Night Shift +2 */
+  extra+=mgrCount * 2;                /* Recruiting Mgr: +2 */
+  extra+=hrDirCount * 4;              /* HR Director: +4 */
   return{n:ceo,e:extra,t:ceo+extra};
 }
 function addLog(t){curLogs.unshift(t);}
@@ -555,12 +585,201 @@ function removeFromBeach(idx){
   saveU();
   const id=G.beach[idx];
   G.beach.splice(idx,1);
-  /* คืน hire count ด้วย */
   if(G.hiredCount>0)G.hiredCount--;
   addLog('คืน '+AC[id].n+' ← ออกจาก Beach');
   trainTarget=null;snap();ra();
 }
-function toggleHire(){hireOpen=!hireOpen;trainTarget=null;ra();}
+
+/* ย้อน train — เอา "to" card ออกจาก Beach คืน "from" card กลับ Beach + คืน train slot */
+function undoTrain(toId){
+  /* หา log entry ล่าสุดที่ train ไปเป็น toId */
+  const logIdx=curLogs.findIndex(l=>l.includes('→ '+AC[toId].n));
+  saveU();
+  const beachIdx=G.beach.lastIndexOf(toId);
+  if(beachIdx===-1){showModal('ย้อน Train ไม่ได้','การ์ดนี้ไม่ได้อยู่ที่ Beach แล้ว');return;}
+  /* หา fromId จาก trainLog */
+  const logEntry=G.trainLog&&G.trainLog[toId];
+  const fromId=logEntry||null;
+  G.beach.splice(beachIdx,1);
+  if(fromId)G.beach.push(fromId);
+  /* คืน train slot */
+  if(G.usedTrainSlots>0)G.usedTrainSlots--;
+  /* คืน trainedThis */
+  if(G.trainedThis)delete G.trainedThis[toId];
+  /* ลบ log entry */
+  if(logIdx!==-1)curLogs.splice(logIdx,1);
+  addLog('↩ UNDO TRAIN'+(fromId?' '+AC[fromId].n+' → '+AC[toId].n:''));
+  if(G.trainLog)delete G.trainLog[toId];
+  trainTarget=null;snap();ra();
+}
+function toggleHire(){
+  hireOpen=!hireOpen;trainTarget=null;
+  const overlay=document.getElementById('hire-overlay');
+  const btn=document.getElementById('hire-open-btn');
+  const lbl=document.getElementById('hire-btn-lbl');
+  overlay.style.display=hireOpen?'flex':'none';
+  btn.className='hire-open-btn'+(hireOpen?' open':'');
+  lbl.textContent=hireOpen?'ปิด ▴':'เลือกการ์ดที่ต้องการ Hire ▾';
+  if(hireOpen)renderHireOverlay();
+}
+function closeHireOnBg(e){if(e.target===document.getElementById('hire-overlay'))toggleHire();}
+/* CHAINS — แต่ละแถวแสดงตาม AC t:[] จริง
+   null = ghost placeholder สำหรับจัดคอลัมน์ให้ตรงกัน */
+const CHAINS=[
+  {label:'MANAGEMENT',cols:5,rows:[
+    /*r0*/ [{id:'lobbyist',btn:true},      {id:'new_biz_dev'},    {id:'local_mgr'},    {id:'regional_mgr'},{id:'cfo'}],
+    /*r1*/ [{id:'mgmt_trainee',btn:true},  {id:'jvp'},            {id:'vp'},           {id:'svp'},         {id:'evp'}],
+    /*r2*/ [{id:'pricing_mgr',btn:true},   {id:'luxury_mgr'},     {id:'discount_mgr'}, null,               null],
+    /*r3*/ [{id:'recruiting_girl',btn:true},null,                  {id:'recruiting_mgr'},null,             {id:'hr_dir'}],
+    /*r4*/ [{id:'trainer',btn:true},        null,                  {id:'coach'},        {id:'guru'},        null],
+    /*r5*/ [{id:'night_shift',btn:true},    null,                  null,               null,               null],
+  ],
+  edges:[
+    /* MT r1c0 → JVP r1c1 → VP r1c2 → SVP r1c3 → EVP r1c4 */
+    [1,0,1,1],[1,1,1,2],[1,2,1,3],[1,3,1,4],
+    /* MT → New Biz Dev r0c1, MT → Luxury r2c1 */
+    [1,0,0,1],[1,0,2,1],
+    /* JVP → Local Mgr r0c2, JVP → Discount r2c2, JVP → RecMgr r3c2, JVP → Coach r4c2 */
+    [1,1,0,2],[1,1,2,2],[1,1,3,2],[1,1,4,2],
+    /* VP → Regional Mgr r0c3, VP → Guru r4c3 */
+    [1,2,0,3],[1,2,4,3],
+    /* SVP → CFO r0c4, SVP → HR Dir r3c4 */
+    [1,3,0,4],[1,3,3,4],
+    /* Pricing → Luxury r2c1, Pricing → Discount r2c2 */
+    [2,0,2,1],[2,0,2,2],
+  ]},
+  {label:'MARKETING',cols:4,rows:[
+    /*r0*/ [{id:'mkt_trainee',btn:true},{id:'campaign_mgr'},{id:'brand_mgr'},{id:'brand_dir'}],
+    /*r1*/ [null,                       {id:'rural_mkt'},   null,           null],
+    /*r2*/ [null,                       {id:'mass_mkt'},    null,           null],
+    /*r3*/ [null,                       {id:'gourmet'},     null,           null],
+  ],
+  edges:[
+    [0,0,0,1],[0,1,0,2],[0,2,0,3],
+    [0,0,1,1],[0,0,2,1],[0,0,3,1],
+  ]},
+  {label:'DRINKS',cols:4,rows:[
+    [{id:'errand_boy',btn:true},{id:'cart_operator'},{id:'truck_driver'},{id:'zeppelin'}],
+  ],
+  edges:[[0,0,0,1],[0,1,0,2],[0,2,0,3]]},
+  {label:'FOOD',cols:3,rows:[
+    /*r0*/ [{id:'kitchen_trainee',btn:true},{id:'burger_cook'}, {id:'burger_chef'}],
+    /*r1*/ [null,                           {id:'pizza_cook'},  {id:'pizza_chef'}],
+    /*r2*/ [{id:'kimchi_master',btn:true},  {id:'sushi_cook'},  {id:'sushi_chef'}],
+    /*r3*/ [null,                           {id:'noodle_cook'}, {id:'noodle_chef'}],
+    /*r4*/ [null,                           null,               {id:'fry_chef'}],
+  ],
+  edges:[
+    [0,0,0,1],[0,1,0,2],
+    [0,0,1,1],[1,1,1,2],
+    [0,0,2,1],[2,1,2,2],
+    [0,0,3,1],[3,1,3,2],
+    /* Cook → Fry Chef */
+    [0,1,4,2],[1,1,4,2],[2,1,4,2],[3,1,4,2],
+  ]},
+  {label:'SERVICE',cols:2,rows:[
+    [{id:'waitress',btn:true},{id:'movie_star'}],
+  ],edges:[[0,0,0,1]]},
+  {label:'BARISTA',cols:3,rows:[
+    [{id:'barista_trainee',btn:true},{id:'barista'},{id:'lead_barista'}],
+  ],edges:[[0,0,0,1],[0,1,0,2]]},
+];
+
+function ccCard(id,showBtn,dis){
+  const c=AC[id];
+  return `<div class="chain-card${showBtn?' entry':''} ${c.c}" data-id="${id}">
+    <span class="cc-icon">${icon(id)}</span>
+    <div class="cc-name">${c.n}</div>
+    <div class="cc-desc">${c.d}</div>
+    ${showBtn?`<button class="cc-hire-btn"${dis?' disabled':''} onclick="doHireOv('${id}')">HIRE ►</button>`:''}
+  </div>`;
+}
+
+function renderHireOverlay(){
+  const rec=calcRecruit(G);const used=G.hiredCount||0;const rem=rec.t-used;
+  const area=document.getElementById('hire-overlay-scroll');
+  const dis=rem<=0;
+  let h=`<div class="hire-remaining">Hire ได้อีก <strong>${rem}</strong> คน &nbsp;·&nbsp; ใช้ไป ${used}/${rec.t}</div>`;
+
+  CHAINS.forEach((grp,gi)=>{
+    const gid=`cg${gi}`;
+    h+=`<div class="chain-group" id="${gid}"><div class="chain-section-label">${grp.label}</div>`;
+    h+=`<div class="chain-grid-wrap" id="${gid}g" style="position:relative">`;
+    /* render grid rows — no arrow cells, just cards */
+    grp.rows.forEach((row,ri)=>{
+      h+=`<div class="chain-grid-row">`;
+      for(let ci=0;ci<grp.cols;ci++){
+        const node=row[ci]||null;
+        if(!node){
+          h+=`<div class="chain-cell chain-ghost"></div>`;
+        } else if(node.ghost){
+          const c=AC[node.id];
+          h+=`<div class="chain-cell"><div class="chain-card chain-ghost-card ${c.c}" data-id="${node.id}"><span class="cc-icon" style="opacity:.3">${icon(node.id)}</span><div class="cc-name" style="opacity:.3">${c.n}</div></div></div>`;
+        } else {
+          h+=`<div class="chain-cell">${ccCard(node.id,!!node.btn&&!dis,dis&&!!node.btn)}</div>`;
+        }
+      }
+      h+=`</div>`;
+    });
+    h+=`<svg class="chain-svg" id="${gid}s"></svg></div></div>`;
+  });
+
+  area.innerHTML=h;
+  /* draw SVG connectors after DOM ready */
+  requestAnimationFrame(()=>drawAllEdges());
+}
+
+function drawAllEdges(){
+  CHAINS.forEach((grp,gi)=>{
+    const gid=`cg${gi}`;
+    const wrap=document.getElementById(gid+'g');
+    const svg=document.getElementById(gid+'s');
+    if(!wrap||!svg||!grp.edges)return;
+    const wRect=wrap.getBoundingClientRect();
+    const cells=wrap.querySelectorAll('.chain-cell');
+    const cols=grp.cols;
+    /* get center of each cell by [row,col] */
+    function cellCenter(r,c){
+      const idx=r*cols+c;
+      const el=cells[idx];
+      if(!el)return null;
+      const rect=el.getBoundingClientRect();
+      return{x:rect.left-wRect.left+rect.width/2, y:rect.top-wRect.top+rect.height/2};
+    }
+    svg.setAttribute('width',wrap.offsetWidth);
+    svg.setAttribute('height',wrap.offsetHeight);
+    svg.innerHTML='';
+    const teal='#4a9da8';
+    grp.edges.forEach(([r1,c1,r2,c2])=>{
+      const a=cellCenter(r1,c1);const b=cellCenter(r2,c2);
+      if(!a||!b)return;
+      /* bezier: ctrl points offset for smooth curves */
+      const dx=b.x-a.x;const dy=b.y-a.y;
+      const cx1=a.x+dx*0.5;const cy1=a.y;
+      const cx2=b.x-dx*0.5;const cy2=b.y;
+      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d',`M${a.x},${a.y} C${cx1},${cy1} ${cx2},${cy2} ${b.x},${b.y}`);
+      path.setAttribute('stroke',teal);
+      path.setAttribute('stroke-width','2');
+      path.setAttribute('fill','none');
+      path.setAttribute('stroke-linecap','round');
+      path.setAttribute('marker-end','url(#arrowhead)');
+      /* arrowhead marker */
+      if(!svg.querySelector('defs')){
+        const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
+        const marker=document.createElementNS('http://www.w3.org/2000/svg','marker');
+        marker.setAttribute('id','arrowhead');marker.setAttribute('markerWidth','8');
+        marker.setAttribute('markerHeight','6');marker.setAttribute('refX','8');
+        marker.setAttribute('refY','3');marker.setAttribute('orient','auto');
+        const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+        poly.setAttribute('points','0 0, 8 3, 0 6');poly.setAttribute('fill',teal);
+        marker.appendChild(poly);defs.appendChild(marker);svg.appendChild(defs);
+      }
+      svg.appendChild(path);
+    });
+  });
+}
+function doHireOv(id){doHire(id);renderHireOverlay();}
 function clickBeach(id){trainTarget=(trainTarget===id)?null:id;ra();}
 function doTrain(from,to){
   const tSlots=calcTrain(G);
@@ -575,6 +794,8 @@ function doTrain(from,to){
   saveU();
   G.beach.splice(G.beach.indexOf(from),1);G.beach.push(to);
   if(!houseMsOn())G.trainedThis[to]=true;
+  if(!G.trainLog)G.trainLog={};
+  G.trainLog[to]=from; /* บันทึกว่า to มาจาก from */
   G.usedTrainSlots=(G.usedTrainSlots||0)+1;
   addLog('TRAIN '+AC[from].n+' → '+AC[to].n+' ('+(G.usedTrainSlots)+'/'+tSlots+')');
   trainTarget=null;snap();ra();
@@ -603,7 +824,7 @@ function nextTurn(){
     curLogs=[...existing.logs];
   } else {
     /* สร้าง turn ใหม่ carry state ต่อจากปัจจุบัน */
-    G={turn:nextT,ceoSlots:cl(G.ceoSlots),managers:cl(G.managers),beach:cl(G.beach),trainedThis:{},hiredCount:0,usedTrainSlots:0};
+    G={turn:nextT,ceoSlots:cl(G.ceoSlots),managers:cl(G.managers),beach:cl(G.beach),trainedThis:{},hiredCount:0,usedTrainSlots:0,trainLog:{}};
     curLogs=[];
     turnSnaps.push({turn:nextT,state:cl(G),logs:[]});
   }
@@ -628,7 +849,7 @@ function viewTurn(t){
 }
 function resetGame(){
   if(!confirm('Reset ทั้งเกม?'))return;
-  G={turn:1,ceoSlots:[],managers:[],beach:[],trainedThis:{},hiredCount:0,usedTrainSlots:0};
+  G={turn:1,ceoSlots:[],managers:[],beach:[],trainedThis:{},hiredCount:0,usedTrainSlots:0,trainLog:{}};
   msChecked={};undoStack=[];curLogs=[];
   turnSnaps=[{turn:1,state:cl(G),logs:[]}];
   hireOpen=false;trainTarget=null;turnStartState=cl(G);ra();
@@ -684,6 +905,7 @@ function renderBeach(state,ro){
   const tSlots=calcTrain(state);
   el.innerHTML=state.beach.map((id,bi)=>{
     const c=AC[id];const isTgt=id===trainTarget;const hasTrain=c.t&&c.t.length>0;
+    const wasTrained=state.trainLog&&state.trainLog[id];
     return `<div class="bc ${c.c}" style="${isTgt?'outline:2px solid #e05050;outline-offset:2px':''}">
       <button class="bc-remove" onclick="removeFromBeach(${bi})" title="คืนการ์ด">✕</button>
       <span class="bc-icon">${icon(id)}</span>
@@ -691,6 +913,7 @@ function renderBeach(state,ro){
       <div class="bc-btns">
         <button class="bc-btn" onclick="doPlace('${id}')">→ WORK</button>
         ${hasTrain&&tSlots>0&&!ro?`<button class="bc-btn ${isTgt?'act':''}" onclick="clickBeach('${id}')">TRAIN</button>`:''}
+        ${wasTrained&&!ro?`<button class="bc-btn" style="background:rgba(200,80,50,.25);color:inherit" onclick="undoTrain('${id}')">↩ TRAIN</button>`:''}
       </div>
     </div>`;
   }).join('');
@@ -710,24 +933,7 @@ function renderTrainPopup(state,ro){
   el.innerHTML=h;
 }
 
-function renderHirePanel(ro){
-  const btn=document.getElementById('hire-open-btn');const lbl=document.getElementById('hire-btn-lbl');const area=document.getElementById('hire-panel-area');
-  btn.className='hire-open-btn'+(hireOpen?' open':'');lbl.textContent=hireOpen?'ปิด ▴':'เลือกการ์ดที่ต้องการ Hire ▾';
-  if(!hireOpen){area.innerHTML='';return;}
-  let h='<div class="hire-panel"><div class="hire-grid">';
-  HIRE_LIST.forEach(id=>{
-    const c=AC[id];const tr=(c.t||[]).map(tid=>AC[tid]?AC[tid].n:tid).join(', ');
-    h+=`<div class="hcard ${c.c}">
-      <span class="hc-icon">${icon(id)}</span>
-      <div class="hc-tag">${c.isM?'MANAGER':'STAFF'}</div>
-      <div class="hc-name">${c.n}</div>
-      <div class="hc-desc">${c.d}</div>
-      ${tr?`<div class="hc-train">→ ${tr}</div>`:'<div class="hc-train">hire only</div>'}
-      <button class="hc-btn" onclick="doHire('${id}')">HIRE ►</button>
-    </div>`;
-  });
-  h+='</div></div>';area.innerHTML=h;
-}
+function renderHirePanel(ro){/* handled by overlay */}
 
 function renderLog(logs){
   document.getElementById('log-area').innerHTML=logs.length===0
